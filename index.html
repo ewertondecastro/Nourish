@@ -427,7 +427,36 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .unit-btn{flex:1;padding:10px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
 .unit-btn.on{background:var(--gold);color:var(--bg)}
 
-/* ai spinner */
+/* Seca specific */
+.seca-day-tab{flex-shrink:0;padding:9px 14px;border-radius:6px;border:1px solid var(--bdr);background:var(--s1);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:all .2s}
+.seca-day-tab.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.seca-day-tab.rest{border-color:rgba(82,168,120,.3);color:var(--green)}
+.seca-day-tab.cardio{border-color:rgba(82,137,201,.3);color:var(--blue)}
+.seca-day-tab.done-day{border-color:rgba(82,168,120,.5);background:rgba(82,168,120,.12);color:var(--green)}
+
+/* Rest timer */
+.rest-timer-wrap{display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--gold-bg);border-top:1px solid rgba(201,169,110,.2)}
+.rest-timer-wrap.show{display:flex}
+.rest-timer-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);letter-spacing:.5px;min-width:52px}
+.rest-timer-bar{flex:1;height:5px;background:var(--s2);border-radius:5px;overflow:hidden}
+.rest-timer-fill{height:100%;background:var(--gold);border-radius:5px;transition:width .9s linear}
+.btn-start-rest{padding:8px 14px;background:var(--gold);color:var(--bg);font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;flex-shrink:0}
+
+/* Load input */
+.load-input-wrap{padding:10px 14px 12px;background:var(--s2);border-top:1px solid var(--bdr);display:none}
+.load-input-wrap.show{display:block}
+.load-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.load-inp{flex:1;background:var(--s1);border:1px solid var(--bdr);color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:22px;padding:8px 12px;border-radius:8px;outline:none;transition:border-color .2s;width:90px}
+.load-inp:focus{border-color:var(--gold)}
+.load-save-btn{padding:8px 14px;background:var(--gold);color:var(--bg);font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer}
+.load-history{display:flex;flex-wrap:wrap;gap:6px}
+.load-hist-item{background:var(--s1);border:1px solid var(--bdr);border-radius:4px;padding:4px 10px;font-size:12px;color:var(--mid)}
+.load-hist-item span{color:var(--gold);font-weight:700}
+
+/* Executed button */
+.btn-executed{width:100%;padding:18px;background:var(--green);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;border-radius:var(--r);cursor:pointer;transition:all .2s;margin:14px 0 0;box-shadow:0 4px 20px rgba(82,168,120,.3)}
+.btn-executed:hover{background:#3A8A5A}
+.btn-executed.done{background:rgba(82,168,120,.15);color:var(--green);border:1.5px solid rgba(82,168,120,.4);box-shadow:none}
 .ai-spin{width:36px;height:36px;border:2px solid var(--bdr);border-top-color:var(--gold);border-right-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -441,68 +470,83 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 <div class="cfg-btn" onclick="openSheet('api-ov')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
 <div class="top-btn-row"><button class="top-btn" id="lang-btn" onclick="toggleLang()">EN</button></div>
 
-<!-- ═══════════ HOME ═══════════ -->
+<!-- ═══════════ HOME — LAUNCHER ═══════════ -->
 <div class="page on" id="pg-home">
-  <div class="home-hero">
-    <div class="hero-date" id="h-date"></div>
-    <div class="hero-name" id="h-name">BOM DIA, <span>EWERTON</span></div>
-    <div class="hero-sub" id="h-sub">Consistência bate perfeição.</div>
 
-    <div class="home-rings">
-      <div class="ring-wrap">
-        <svg viewBox="0 0 160 160" width="160" height="160" style="transform:rotate(-90deg)">
-          <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="9"/>
-          <circle class="r-arc" id="arc-prot" cx="80" cy="80" r="72" stroke="#52A878" stroke-width="9" stroke-dasharray="452" stroke-dashoffset="452" fill="none"/>
-          <circle cx="80" cy="80" r="58" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10"/>
-          <circle class="r-arc" id="arc-kcal" cx="80" cy="80" r="58" stroke="#C9A96E" stroke-width="10" stroke-dasharray="364" stroke-dashoffset="364" fill="none"/>
-          <circle cx="80" cy="80" r="44" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/>
-          <circle class="r-arc" id="arc-water" cx="80" cy="80" r="44" stroke="#5289C9" stroke-width="8" stroke-dasharray="277" stroke-dashoffset="277" fill="none"/>
-        </svg>
-        <div class="ring-center">
-          <div class="ring-big-num" id="r-kcal-num">0</div>
-          <div class="ring-lbl" id="r-kcal-lbl">kcal</div>
-        </div>
-      </div>
-      <div class="home-ring-legend">
-        <div class="hrl"><div class="hrl-dot" style="background:var(--gold)"></div><div><div class="hrl-val" id="rl-k">0</div><div class="hrl-lbl" id="rl-kl">Calorias</div></div></div>
-        <div class="hrl"><div class="hrl-dot" style="background:var(--green)"></div><div><div class="hrl-val" id="rl-p">0g</div><div class="hrl-lbl" id="rl-pl">Proteína</div></div></div>
-        <div class="hrl"><div class="hrl-dot" style="background:var(--blue)"></div><div><div class="hrl-val" id="rl-w">0</div><div class="hrl-lbl" id="rl-wl">Copos água</div></div></div>
-      </div>
-    </div>
+  <!-- Hero strip -->
+  <div style="padding:56px 20px 20px;background:linear-gradient(180deg,var(--s1) 0%,transparent 100%);border-bottom:1px solid var(--bdr)">
+    <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:4px" id="h-date"></div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--text);letter-spacing:1px;line-height:1;margin-bottom:4px" id="h-name">BOM DIA, <span style="color:var(--gold)">EWERTON</span></div>
+    <div style="font-size:15px;color:var(--mid)" id="h-sub">Consistência bate perfeição.</div>
   </div>
 
-  <div class="stat-row">
+  <!-- Stats row -->
+  <div class="stat-row" style="margin:12px 14px 0;border-radius:var(--r);overflow:hidden">
     <div class="stat-cell"><div class="stat-val gold" id="h-weight">228.5</div><div class="stat-lbl">lbs</div></div>
     <div class="stat-cell"><div class="stat-val" id="h-streak">0</div><div class="stat-lbl" id="h-streak-lbl">Streak</div></div>
     <div class="stat-cell"><div class="stat-val" id="h-fasts">0</div><div class="stat-lbl">Jejuns</div></div>
+    <div class="stat-cell"><div class="stat-val" id="h-water-stat">0</div><div class="stat-lbl">oz</div></div>
   </div>
 
-  <!-- Fast mini -->
-  <div class="card">
-    <div class="card-hd"><div class="card-title" id="h-fast-title">JEJUM</div><div class="card-link" style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);cursor:pointer" onclick="goPage('fast')">ABRIR →</div></div>
-    <div class="fast-mini-card">
-      <div class="fmr">
-        <svg viewBox="0 0 64 64" width="64" height="64" style="transform:rotate(-90deg)">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="5"/>
-          <circle id="h-fast-arc" cx="32" cy="32" r="26" fill="none" stroke="var(--gold)" stroke-width="5" stroke-dasharray="163" stroke-dashoffset="163" stroke-linecap="round"/>
-        </svg>
-        <div class="fmr-c" id="h-fast-pct">0%</div>
-      </div>
-      <div><div class="fast-mini-t" id="h-fast-t">—</div><div class="fast-mini-s" id="h-fast-s">Não ativo</div></div>
+  <!-- Fast status bar -->
+  <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer" onclick="goPage('fast')">
+    <div class="fmr" style="width:52px;height:52px;flex-shrink:0">
+      <svg viewBox="0 0 52 52" width="52" height="52" style="transform:rotate(-90deg)">
+        <circle cx="26" cy="26" r="21" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/>
+        <circle id="h-fast-arc" cx="26" cy="26" r="21" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="132" stroke-dashoffset="132" stroke-linecap="round"/>
+      </svg>
+      <div class="fmr-c" id="h-fast-pct" style="font-size:11px">0%</div>
     </div>
+    <div style="flex:1">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:3px">JEJUM</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);letter-spacing:.5px;line-height:1" id="h-fast-t">—</div>
+      <div style="font-size:13px;color:var(--mid);margin-top:2px" id="h-fast-s">Não ativo · toque para abrir</div>
+    </div>
+    <div style="color:var(--gold);font-size:22px;font-weight:700">›</div>
   </div>
 
-  <!-- Today's workout -->
-  <div class="card" id="h-workout-card">
-    <div class="card-hd"><div class="card-title" id="h-workout-title">TREINO DE HOJE</div><div class="card-link" style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);cursor:pointer" onclick="goPage('workout')">VER COMPLETO →</div></div>
-    <div id="h-today-exercises"></div>
-  </div>
+  <!-- BIG LAUNCHER BUTTONS -->
+  <div style="padding:12px 14px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px">
 
-  <!-- Water -->
-  <div class="card">
-    <div class="card-hd"><div class="card-title" id="h-water-title">ÁGUA</div><div style="font-size:15px;color:var(--mid);font-weight:700" id="h-water-c">0/128 oz</div></div>
-    <div class="water-track" id="water-track"></div>
-    <div style="font-size:12px;color:var(--dim);margin-top:10px" id="h-water-note">Toque para registrar · Meta: 128 oz (3,8L) · Cariani para 103kg</div>
+    <!-- TREINO -->
+    <div onclick="goPage('workout')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:space-between" ontouchstart="this.style.opacity='.7'" ontouchend="this.style.opacity='1'">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 12h18M7 3l1 4M16 3l1 4M7 21l1-4M16 21l1-4"/></svg>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);letter-spacing:.5px;margin-bottom:3px">TREINO</div>
+        <div style="font-size:13px;color:var(--mid)" id="h-workout-label">Meu plano</div>
+      </div>
+    </div>
+
+    <!-- SECA BARRIGA -->
+    <div onclick="goPage('seca')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:space-between" ontouchstart="this.style.opacity='.7'" ontouchend="this.style.opacity='1'">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);letter-spacing:.5px;margin-bottom:3px">SECA BARRIGA</div>
+        <div style="font-size:13px;color:var(--mid)">Cariani</div>
+      </div>
+    </div>
+
+    <!-- HISTÓRICO -->
+    <div onclick="goPage('history')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:space-between" ontouchstart="this.style.opacity='.7'" ontouchend="this.style.opacity='1'">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);letter-spacing:.5px;margin-bottom:3px">HISTÓRICO</div>
+        <div style="font-size:13px;color:var(--mid)">Peso · Jejuns · Treinos</div>
+      </div>
+    </div>
+
+    <!-- ÁGUA -->
+    <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C6.5 11 2 15.5 2 17a10 10 0 0 0 20 0c0-1.5-4.5-6-10-15z"/></svg>
+        <div style="font-size:14px;color:var(--blue);font-weight:700" id="h-water-c">0/128oz</div>
+      </div>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);letter-spacing:.5px;margin-bottom:8px">ÁGUA</div>
+        <div class="water-track" id="water-track" style="display:flex;gap:4px;flex-wrap:wrap"></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -734,7 +778,245 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
     <span id="nav-hi-l">Histórico</span>
   </div>
+  <div class="nav-tab" id="nav-seca" onclick="goPage('seca')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <span style="font-size:10px;letter-spacing:.5px;font-weight:800">SECA</span>
+  </div>
 </nav>
+
+<!-- ═══════════ SECA BARRIGA ═══════════ -->
+<div class="page" id="pg-seca">
+  <div style="padding:56px 0 0">
+    <div style="padding:0 20px 20px;border-bottom:1px solid var(--bdr)">
+      <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px">RENATO CARIANI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--text);letter-spacing:1px;line-height:1">SECA BARRIGA</div>
+      <div style="font-size:15px;color:var(--mid);margin-top:6px">Plano original prescrito para Ewerton Decastro</div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:1px;margin:14px 14px 0;border:1px solid var(--bdr);border-radius:var(--rs);overflow:hidden">
+      <button class="hist-tab on" onclick="showSecaTab('hoje',this)" id="st-hoje" style="flex:1">HOJE</button>
+      <button class="hist-tab" onclick="showSecaTab('treino',this)" id="st-treino" style="flex:1">TREINO</button>
+      <button class="hist-tab" onclick="showSecaTab('dieta',this)" id="st-dieta" style="flex:1">DIETA</button>
+      <button class="hist-tab" onclick="showSecaTab('cardio',this)" id="st-cardio" style="flex:1">CARDIO</button>
+      <button class="hist-tab" onclick="showSecaTab('regras',this)" id="st-regras" style="flex:1">REGRAS</button>
+    </div>
+
+    <!-- HOJE TAB -->
+    <div id="seca-hoje" class="hist-section on" style="padding-bottom:20px">
+      <!-- Day scroll tabs -->
+      <div style="display:flex;gap:7px;overflow-x:auto;padding:12px 14px 0;scrollbar-width:none" id="seca-day-tabs"></div>
+      <div id="seca-hoje-content"></div>
+    </div>
+    <div id="seca-treino" class="hist-section" style="padding-bottom:20px">
+      <div style="background:var(--gold-bg);border:1px solid rgba(201,169,110,.25);border-radius:var(--r);margin:14px 14px 0;padding:16px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">TREINO 1 ACADEMIA MASCULINO</div>
+        <div style="font-size:15px;color:var(--text);line-height:1.6">Técnica <strong>FullBody</strong> — todos os grupos musculares em uma única sessão.<br>
+        <strong style="color:var(--gold)">3 séries × 15–20 repetições</strong> por exercício.<br>
+        Intervalo: <strong>30–40 segundos</strong> entre as séries.<br>
+        Aquecimento: <strong>10 min esteira</strong> + alongamento.</div>
+      </div>
+
+      <!-- Treino A -->
+      <div style="margin:14px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">
+        <div style="padding:16px;background:rgba(201,169,110,.08);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);letter-spacing:.5px">TREINO A</div>
+            <div style="font-size:13px;color:var(--mid)">Seg · Qua · Sex (alternando com B)</div>
+          </div>
+          <div class="badge badge-gold">Full Body</div>
+        </div>
+        <div id="seca-treino-a-list"></div>
+      </div>
+
+      <!-- Treino B -->
+      <div style="margin:14px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">
+        <div style="padding:16px;background:rgba(82,137,201,.08);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--blue);letter-spacing:.5px">TREINO B</div>
+            <div style="font-size:13px;color:var(--mid)">Ter · Qui · Sáb (alternando com A)</div>
+          </div>
+          <div class="badge badge-blue">Full Body</div>
+        </div>
+        <div id="seca-treino-b-list"></div>
+      </div>
+
+      <!-- Sugestão de dias -->
+      <div style="margin:14px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:16px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">SUGESTÃO DE DIAS</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.9">
+          <strong style="color:var(--text)">3x/semana:</strong> Seg A · Qua B · Sex A (próx. semana começa com B)<br>
+          <strong style="color:var(--text)">4x/semana:</strong> Seg A · Ter B · Qui A · Sex B<br>
+          <strong style="color:var(--text)">5x/semana:</strong> Seg A · Ter B · Qua A · Qui B · Sex A
+        </div>
+      </div>
+    </div>
+
+    <!-- DIETA TAB -->
+    <div id="seca-dieta" class="hist-section" style="padding-bottom:20px">
+      <div style="background:var(--gold-bg);border:1px solid rgba(201,169,110,.25);border-radius:var(--r);margin:14px 14px 0;padding:16px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">DIETA SECA BARRIGA — CARIANI</div>
+        <div style="font-size:15px;color:var(--text);line-height:1.6">
+          Jejum intermitente — começar a comer a partir do <strong>almoço</strong>.<br>
+          <strong style="color:var(--gold)">3 refeições por dia:</strong> Almoço · Lanche da tarde · Jantar.<br>
+          Total: <strong>1.305 kcal/dia</strong> (calculado para ~70kg — ajuste de porção para seu peso).<br>
+          Rotação de alimentos a cada dia.
+        </div>
+      </div>
+
+      <!-- Day selector -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--bdr)">
+        <button onclick="changeSecaDay(-1)" style="padding:10px 16px;background:var(--s1);border:1px solid var(--bdr);border-radius:8px;color:var(--mid);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer">← ANT</button>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);letter-spacing:.5px" id="seca-day-label">DIA 1</div>
+        <button onclick="changeSecaDay(1)" style="padding:10px 16px;background:var(--s1);border:1px solid var(--bdr);border-radius:8px;color:var(--mid);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer">PRÓX →</button>
+      </div>
+      <div id="seca-diet-content"></div>
+    </div>
+
+    <!-- CARDIO TAB -->
+    <div id="seca-cardio" class="hist-section" style="padding-bottom:20px">
+      <div style="background:var(--blue-bg);border:1px solid rgba(82,137,201,.25);border-radius:var(--r);margin:14px 14px 0;padding:16px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px">TREINO 2 AERÓBICO MASCULINO</div>
+        <div style="font-size:15px;color:var(--text);line-height:1.6">Treino HIIT — esforços intermitentes de alta intensidade.<br>
+        Adaptado para você: <strong style="color:var(--gold)">caminhada inclinada</strong> no lugar de corrida (joelhos).</div>
+      </div>
+
+      <!-- Treino A: HIIT Esteira -->
+      <div style="margin:14px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">
+        <div style="padding:14px 16px;background:rgba(82,137,201,.08);border-bottom:1px solid var(--bdr)">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--blue);letter-spacing:.5px">CARDIO A — ESTEIRA INCLINADA</div>
+          <div style="font-size:13px;color:var(--mid);margin-top:2px">Adaptado do HIIT original (sem impacto nos joelhos)</div>
+        </div>
+        ${[
+          {ex:'Aquecimento', detail:'5–8 min caminhada leve · Inclinação 4%', note:''},
+          {ex:'Intervalo 1–10: Alta intensidade', detail:'30 seg · Vel 3.5–4.0 · Incl 12–15%', note:'FC 120–140 bpm'},
+          {ex:'Intervalo 1–10: Recuperação', detail:'60 seg · Vel 2.5 · Incl 6%', note:'FC 90–100 bpm'},
+          {ex:'Pós-treino', detail:'3 min caminhada leve · Incl 2%', note:''},
+          {ex:'Alongamento quadríceps', detail:'30 seg cada perna', note:''},
+        ].map(r => `
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bdr)">
+          <div style="flex:1">
+            <div style="font-size:15px;color:var(--text);font-weight:600">${r.ex}</div>
+            <div style="font-size:13px;color:var(--mid);margin-top:3px">${r.detail}</div>
+          </div>
+          ${r.note?`<div style="font-size:12px;color:var(--gold);font-weight:600">${r.note}</div>`:''}
+        </div>`).join('')}
+      </div>
+
+      <!-- Treino B: HIIT Corpo -->
+      <div style="margin:14px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">
+        <div style="padding:14px 16px;background:rgba(82,137,201,.08);border-bottom:1px solid var(--bdr)">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--blue);letter-spacing:.5px">CARDIO B — BICICLETA ERGOMÉTRICA</div>
+          <div style="font-size:13px;color:var(--mid);margin-top:2px">Substitui HIIT de peso corporal (zero impacto nos joelhos)</div>
+        </div>
+        ${[
+          {ex:'Aquecimento', detail:'5 min · Resistência 3', note:''},
+          {ex:'Alta intensidade × 8', detail:'30 seg · Resistência 8–10 · Pedalar forte', note:'90–100% FC'},
+          {ex:'Recuperação × 8', detail:'30 seg · Resistência 3 · Pedalada leve', note:'60–70% FC'},
+          {ex:'Descanso entre blocos', detail:'Aplicativo: Tabata Timer ou Interval Timer', note:''},
+          {ex:'Pós-treino', detail:'3 min pedalada leve + alongamento', note:''},
+        ].map(r => `
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bdr)">
+          <div style="flex:1">
+            <div style="font-size:15px;color:var(--text);font-weight:600">${r.ex}</div>
+            <div style="font-size:13px;color:var(--mid);margin-top:3px">${r.detail}</div>
+          </div>
+          ${r.note?`<div style="font-size:12px;color:var(--gold);font-weight:600">${r.note}</div>`:''}
+        </div>`).join('')}
+      </div>
+
+      <div style="margin:14px;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:16px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px">INTENSIDADE ALVO</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.8">
+          Alta intensidade: <strong style="color:var(--red)">90–100% FC máxima</strong><br>
+          Recuperação: <strong style="color:var(--green)">60–70% FC máxima</strong><br>
+          FC máxima estimada: <strong style="color:var(--text)">176 bpm</strong> (220 − 44 anos)<br>
+          Duração total: <strong style="color:var(--gold)">15–30 minutos</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGRAS TAB -->
+    <div id="seca-regras" class="hist-section" style="padding-bottom:20px">
+
+      <div style="margin:12px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">CAFÉ</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Liberado em qualquer horário. Preto amargo ou com adoçante. Sem leite. Sem açúcar.</div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">ADOÇANTE</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Todos liberados. Melhores opções: <strong style="color:var(--text)">Linea Sucralose</strong> e <strong style="color:var(--text)">Stevia</strong>.</div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px">TOME À VONTADE</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.8">
+          Água natural<br>
+          Suco CLIGHT · Chimarrão<br>
+          Chá sem açúcar (carqueja, hibisco, cavalinha, cidreira, erva-doce, capim-limão, camomila, chá verde)<br>
+          Suco natural de limão sem açúcar
+        </div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--red-bg);border:1px solid rgba(224,82,82,.2);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px">EVITE TOMAR</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.8">
+          Suco natural ou industrializado<br>
+          Água de coco<br>
+          Energéticos (Gatorade, Red Bull)<br>
+          Refrigerante comum
+        </div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">COM MODERAÇÃO</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.8">
+          Água com gás<br>
+          Chá industrializado diet/light (Green Tea, Matte Leão Diet)<br>
+          Energético zero calorias (Nitrix Zero, Red Bull Sugar Free)<br>
+          Refrigerante diet/light/zero
+        </div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">QUANDO SENTIR FOME</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.8">
+          Gelatina diet zero açúcar (à vontade)<br>
+          Café preto · Água · Chá amargo<br>
+          Folhas verdes à vontade: alface, agrião, rúcula, couve, espinafre, repolho<br>
+          Pepino · Cebola · Tomate (sem tempero)
+        </div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">SONO</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Mínimo <strong style="color:var(--text)">6–7 horas</strong> por dia. Fundamental para o resultado.</div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">ÁGUA</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Mínimo 2–3 litros por dia.<br>Para <strong style="color:var(--text)">103kg: 3,1L a 5,2L</strong> diários (30–50ml por kg de peso).</div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">SE SAIR DO PLANO</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Não desanime. Recupere rapidamente e compense na atividade física. Um dia não desfaz semanas de consistência.</div>
+      </div>
+
+      <div style="margin:10px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">MASTIGAR BEM</div>
+        <div style="font-size:15px;color:var(--mid);line-height:1.6">Coma devagar. O paladar leva <strong style="color:var(--text)">15 dias</strong> para se adaptar a novos sabores. Mantenha o cardápio mesmo assim.</div>
+      </div>
+
+      <div style="margin:10px 14px 20px;background:var(--gold-bg);border:1px solid rgba(201,169,110,.25);border-radius:var(--rs);padding:16px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">FOCO</div>
+        <div style="font-size:15px;color:var(--text);line-height:1.6">Foque no <strong>processo</strong>, não no resultado. Fazendo corretamente o cardápio, suplementação e atividade física — o resultado vem.<br><br>Sem dedicação e disciplina nada de concreto se consegue. O resultado é do tamanho do seu esforço.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- API SHEET -->
 <div class="overlay" id="api-ov" onclick="if(event.target===this)closeSheet('api-ov')">
@@ -1456,6 +1738,7 @@ function goPage(id) {
   document.getElementById('pg-'+id).classList.add('on');
   document.getElementById('nav-'+id).classList.add('on');
   if (id==='history') { renderWeightPage(); renderWorkoutHistory(); renderFastHistory2(); renderNutHistory(); }
+  if (id==='seca') { renderSecaHoje(); buildSecaTreino(); renderSecaDiet(); }
 }
 
 // ══════════════════════════════════
@@ -1464,22 +1747,41 @@ function goPage(id) {
 function initHome() {
   const h = new Date().getHours();
   const g = h<12?tr('greet_morning'):h<17?tr('greet_after'):tr('greet_evening');
-  setEl('h-name', g+', <span>'+D.name.toUpperCase()+'</span>');
+  setEl('h-name', g+', <span style="color:var(--gold)">'+D.name.toUpperCase()+'</span>');
   setEl('h-sub', tr('sub'));
   setEl('h-date', new Date().toLocaleDateString(lang==='pt'?'pt-BR':'en-US',{weekday:'long',month:'long',day:'numeric'}));
   setEl('h-streak', D.streak||0);
   setEl('h-fasts', (D.fastHistory||[]).length);
-  updateRings();
-  renderTodayWorkout();
+
+  // Today workout label
+  const plan = WORKOUT_PLAN[lang]||WORKOUT_PLAN.pt;
+  const todayKey = getTodayKey();
+  const session = plan[todayKey];
+  if(session && session.type !== 'rest') {
+    setEl('h-workout-label', session.title);
+  } else {
+    setEl('h-workout-label', lang==='pt'?'Descanso hoje':'Rest day');
+  }
+
+  setEl('h-fast-status-home', 'Protocolo '+D.fastH+':'+(24-D.fastH));
+  updateHomeStats();
 }
 
 function updateRings() {
   const k = D.log.reduce((a,e)=>a+(e.kcal||0),0);
   const p = D.log.reduce((a,e)=>a+(e.protein||0),0);
-  arcSetR('arc-kcal',364,Math.min(k/D.goalKcal,1));
-  arcSetR('arc-prot',452,Math.min(p/(D.goalProt||180),1));
-  arcSetR('arc-water',277,Math.min(D.water/8,1));
-  setEl('r-kcal-num',k);setEl('rl-k',k);setEl('rl-p',p+'g');setEl('rl-w',D.water);
+  const totalOz = D.water * WATER_OZ_EACH;
+  setEl('h-water-stat', totalOz);
+  setEl('h-water-c', totalOz+'/128oz');
+  // Update weight display
+  if(D.weightLbs) setEl('h-weight', dispW(D.weightLbs));
+}
+
+function updateHomeStats() {
+  updateRings();
+  setEl('h-streak', D.streak||0);
+  setEl('h-fasts', (D.fastHistory||[]).length);
+  if(D.weightLbs) setEl('h-weight', dispW(D.weightLbs));
 }
 function arcSetR(id,c,p){const e=document.getElementById(id);if(e)e.style.strokeDashoffset=c-(c*p);}
 
@@ -2412,6 +2714,68 @@ const ALTERNATIVES = {
     { name: 'Panturrilha Sentado', detail: '3×20 · 25lb no joelho · Sem apoio em pé' },
     { name: 'Panturrilha na Leg Press', detail: '3×20 · 60lb · Se máquina disponível' },
   ],
+  'Agachamento Smith': [
+    { name: 'Leg Press Horizontal', detail: '3×15–20 · 60–80 lb · Zero impacto nos joelhos · Amplitude 90°' },
+    { name: 'Cadeira Extensora', detail: '3×15–20 · 40 lb · Isolamento do quadríceps · Amplitude controlada' },
+    { name: 'Afundo Estático com Halter', detail: '3×15 cada · 10 lb cada · Pé da frente fixo · Sem avanço' },
+  ],
+  'Stiff': [
+    { name: 'Mesa Flexora (Máquina)', detail: '3×15–20 · 30 lb · Isquiotibial isolado · Zero stress no joelho' },
+    { name: 'Cadeira Flexora', detail: '3×15–20 · 35 lb · Mais seguro para joelhos' },
+    { name: 'Elevação Pélvica', detail: '3×20 · Corporal ou 25 lb no quadril · Ativa glúteo e posterior' },
+  ],
+  'Máquina Flexora': [
+    { name: 'Mesa Flexora (deitado)', detail: '3×15–20 · 30 lb · Mesmo músculo, posição diferente' },
+    { name: 'Cadeira Flexora', detail: '3×15–20 · 35 lb · Se flexora em pé estiver ocupada' },
+  ],
+  'Máquina Extensora': [
+    { name: 'Leg Press Horizontal', detail: '3×15–20 · 60 lb · Quadríceps sem stress no joelho' },
+    { name: 'Agachamento Parcial com Halter', detail: '3×15 · 15 lb cada · Amplitude 45°' },
+  ],
+  'Máquina Abdutora': [
+    { name: 'Elevação Lateral de Perna (deitado)', detail: '3×20 cada · Corporal · Glúteo médio sem impacto' },
+    { name: 'Monster Walk com Elástico', detail: '3×15 passos · Elástico leve · Sem impacto' },
+  ],
+  'Máquina Adutora': [
+    { name: 'Adução com Elástico (deitado)', detail: '3×20 · Elástico leve · Zero impacto' },
+    { name: 'Plie Parcial', detail: '3×15 · Corporal · Pés bem abertos · Amplitude mínima' },
+  ],
+  'Abdominal Supra': [
+    { name: 'Crunch no Cabo (Polia Alta)', detail: '3×15–20 · 20 lb · Mesmo padrão' },
+    { name: 'Crunch com Halter no peito', detail: '3×15 · 10 lb · Mais resistência' },
+  ],
+  'Abdominal Infra': [
+    { name: 'Elevação de Pernas (deitado)', detail: '3×15 · Corporal · Joelhos levemente dobrados' },
+    { name: 'Canivete', detail: '3×12 · Corporal · Sobe pernas e tronco juntos' },
+  ],
+  'Abdominal Oblíquo': [
+    { name: 'Toque no Calcanhar', detail: '3×20 · Corporal · Deitado, flexão lateral alternada' },
+    { name: 'Russian Twist', detail: '3×20 · 10 lb · Sentado, girar o tronco' },
+  ],
+  'Panturrilha no Leg': [
+    { name: 'Panturrilha em Pé na Parede', detail: '3×20 · Corporal · Apoio na parede · Amplitude total' },
+    { name: 'Panturrilha Sentado com Halter', detail: '3×20 · 25 lb no joelho · Sóleus + panturrilha' },
+  ],
+  'Crucifixo Inclinado': [
+    { name: 'Peck Deck (Máquina Crucifixo)', detail: '3×15–20 · 40 lb · Mesmo padrão de movimento' },
+    { name: 'Crossover na Polia Alta', detail: '3×15 · 15 lb cada · Se disponível' },
+  ],
+  'Desenvolvimento Máquina': [
+    { name: 'Desenvolvimento com Halteres (sentado)', detail: '3×15 · 15 lb cada · Sem arquear lombar' },
+    { name: 'Arnold Press', detail: '3×12 · 12 lb cada · Mais ativação do deltóide' },
+  ],
+  'Rosca Alternada': [
+    { name: 'Rosca Concentrada', detail: '3×12 cada · 15 lb · Cotovelo no joelho · Isolamento total' },
+    { name: 'Rosca na Polia Baixa', detail: '3×12 · 20 lb · Tensão constante no bíceps' },
+  ],
+  'Tríceps Testa': [
+    { name: 'Tríceps no Cabo com Barra Reta', detail: '3×12 · 25 lb · Cabeça longa do tríceps' },
+    { name: 'Dips entre Bancos', detail: '3×máximo · Corporal · Joelhos dobrados, sem impacto' },
+  ],
+  'Remada Baixa com Triângulo': [
+    { name: 'Remada com Halter 1 Braço', detail: '3×12 cada · 30 lb · Apoiado no banco' },
+    { name: 'Remada Curvada com Halteres', detail: '3×12 · 20 lb cada · Sem máquina' },
+  ],
 };
 
 function openAlternatives(exName) {
@@ -2464,6 +2828,451 @@ function importBackup(event) {
     }
   };
   reader.readAsText(file);
+}
+
+// ══════════════════════════════════
+// SECA BARRIGA DATA
+// ══════════════════════════════════
+const SECA_TREINO_A = [
+  { name: 'Supino Reto', sets: '3', reps: '15–20', rest: '30–40s', yt: 'supino+reto+execução+correta', note: 'Amplitude completa. Controle a descida.' },
+  { name: 'Puxador Frente', sets: '3', reps: '15–20', rest: '30–40s', yt: 'puxador+frente+execução', note: 'Pegada aberta. Puxar até o queixo. Cotovelos para baixo.' },
+  { name: 'Rosca Direta (Barra W)', sets: '3', reps: '15–20', rest: '30–40s', yt: 'rosca+direta+barra+w+execução', note: 'Cotovelos fixos ao corpo. Supinação no topo.' },
+  { name: 'Tríceps Corda', sets: '3', reps: '15–20', rest: '30–40s', yt: 'tríceps+corda+polia+execução', note: 'Cotovelos fixos. Extensão completa. Abrir as mãos no final.' },
+  { name: 'Elevação Lateral', sets: '3', reps: '15–20', rest: '30–40s', yt: 'elevação+lateral+ombro+execução', note: 'Movimento controlado. Sem balançar o corpo.' },
+  { name: 'Máquina Flexora', sets: '3', reps: '15–20', rest: '30–40s', yt: 'máquina+flexora+posterior+execução', note: 'Amplitude completa. Controle a volta.' },
+  { name: 'Máquina Extensora', sets: '3', reps: '15–20', rest: '30–40s', yt: 'máquina+extensora+quadríceps+execução', note: 'Extensão completa. Segura 1 segundo no topo.' },
+  { name: 'Máquina Abdutora', sets: '3', reps: '15–20', rest: '30–40s', yt: 'máquina+abdutora+glúteo+execução', note: 'Sem bater. Movimento controlado.' },
+  { name: 'Panturrilha Máquina', sets: '3', reps: '15–20', rest: '30–40s', yt: 'panturrilha+máquina+execução', note: 'Amplitude total. Segura no topo.' },
+  { name: 'Abdominal Supra', sets: '3', reps: '15–20', rest: '30–40s', yt: 'abdominal+supra+execução+correta', note: 'Não puxar o pescoço. Contrair no topo.' },
+];
+
+const SECA_TREINO_B = [
+  { name: 'Tríceps Testa (Barra W)', sets: '3', reps: '15–20', rest: '30–40s', yt: 'tríceps+testa+barra+w+execução', note: 'Deitado. Cotovelos fixos. Leva à testa. Extensão completa.' },
+  { name: 'Máquina Adutora', sets: '3', reps: '15–20', rest: '30–40s', yt: 'máquina+adutora+interno+coxa+execução', note: 'Amplitude controlada. Sem bater.' },
+  { name: 'Crucifixo Inclinado', sets: '3', reps: '15–20', rest: '30–40s', yt: 'crucifixo+inclinado+peitoral+execução', note: 'Leve flexão do cotovelo. Amplitude controlada.' },
+  { name: 'Desenvolvimento Máquina', sets: '3', reps: '15–20', rest: '30–40s', yt: 'desenvolvimento+máquina+ombro+execução', note: 'Sem arquear a lombar. Cotovelo a 90° na descida.' },
+  { name: 'Panturrilha no Leg', sets: '3', reps: '15–20', rest: '30–40s', yt: 'panturrilha+leg+press+execução', note: 'Apenas a ponta do pé na plataforma. Amplitude total.' },
+  { name: 'Remada Baixa com Triângulo', sets: '3', reps: '15–20', rest: '30–40s', yt: 'remada+baixa+triangulo+execução', note: 'Puxar até o umbigo. Retrair escápula no final.' },
+  { name: 'Abdominal Infra', sets: '3', reps: '15–20', rest: '30–40s', yt: 'abdominal+infra+execução+correta', note: 'Pernas a 90°. Elevar o quadril. Não balançar.' },
+  { name: 'Stiff', sets: '3', reps: '15–20', rest: '30–40s', yt: 'stiff+execução+isquiotibial', note: '⚠️ JOELHO: amplitude reduzida. Joelhos levemente flexionados. Parar se sentir dor.', warn: true },
+  { name: 'Abdominal Oblíquo', sets: '3', reps: '15–20', rest: '30–40s', yt: 'abdominal+oblíquo+execução', note: 'Cotovelo ao joelho oposto. Controlado.' },
+  { name: 'Rosca Alternada (Banco 45°)', sets: '3', reps: '15–20', rest: '30–40s', yt: 'rosca+alternada+banco+45+execução', note: 'Cotovelo atrás do corpo. Máximo alongamento do bíceps.' },
+  { name: 'Agachamento Smith', sets: '3', reps: '15–20', rest: '30–40s', yt: 'agachamento+smith+execução+correta', note: '⚠️ JOELHO: amplitude meia, pés à frente da barra. Parar se sentir dor. Consulte seu médico.', warn: true },
+];
+
+const SECA_DIETAS = [
+  { dia: 'DIA 1', almoco: ['Arroz branco 165g + feijão 140g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Whey 30g', 'Aveia 15g', 'Melão 300g'], jantar: ['Mandioca 210g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 2', almoco: ['Macarrão 200g', 'Carne moída 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Pão de forma integral 1 fatia', 'Frango desfiado 60g + requeijão light 20g', 'Morango 205g'], jantar: ['Arroz branco 165g + feijão 140g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 3', almoco: ['Arroz branco 165g + lentilha 120g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Torrada integral 4 unidades', 'Queijo branco 40g', 'Melão 100g'], jantar: ['Mandioca 210g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 4', almoco: ['Macarrão 200g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Whey 30g', 'Aveia 15g', 'Banana 1 média'], jantar: ['Arroz branco 165g + feijão 140g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 5', almoco: ['Arroz branco 165g + ervilha 115g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Torrada integral 4 unidades', 'Ovo cozido 2 unidades'], jantar: ['Mandioca 210g', 'Carne moída 130g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 6', almoco: ['Batata doce 345g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Pão francês 1 unidade', 'Ovos mexidos (3 claras 1 gema)', 'Requeijão light 15g'], jantar: ['Arroz branco 165g + feijão 140g', 'Peixe grelhado tilápia 155g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 7', almoco: ['Arroz branco 165g + lentilha 120g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Leite desnatado 300ml', 'Mamão 130g', 'Whey 30g'], jantar: ['Macarrão 200g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 8', almoco: ['Arroz branco 165g + quinoa 25g', 'Salmão 140g (máx 2x/semana)', 'Folhas à vontade + legumes à vontade'], lanche: ['Torrada integral 4 unidades', 'Cottage 35g', 'Aveia 15g', 'Melão 165g'], jantar: ['Arroz branco 165g + ervilha 115g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 9', almoco: ['Mandioca 210g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Tapioca 60g', 'Carne moída 50g', 'Requeijão light 15g'], jantar: ['Macarrão 200g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 10', almoco: ['Mandioca 210g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Tapioca 60g', 'Carne moída 50g', 'Requeijão light 15g'], jantar: ['Macarrão 200g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 11', almoco: ['Arroz branco 165g + lentilha 120g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Aveia 30g (mingau)', 'Whey 30g', 'Banana 40g'], jantar: ['Arroz branco 165g + feijão 140g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 12', almoco: ['Arroz branco 220g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Leite desnatado 300ml', 'Mamão 130g', 'Whey 30g'], jantar: ['Arroz branco 165g + quinoa 25g', 'Peixe grelhado tilápia 155g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 13', almoco: ['Macarrão 200g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'], lanche: ['Torrada integral 4 unidades', 'Omelete 2 ovos inteiros'], jantar: ['Arroz branco 165g + feijão 140g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 14', almoco: ['Macarrão 200g', 'Peixe grelhado tilápia 155g', 'Folhas à vontade + legumes à vontade'], lanche: ['Torrada integral 4 unidades', 'Omelete 2 ovos inteiros'], jantar: ['Arroz branco 165g + feijão 140g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+  { dia: 'DIA 15', almoco: ['Batata baroa 335g', 'Bife grelhado 130g', 'Folhas à vontade + legumes à vontade'], lanche: ['Iogurte desnatado 300ml', 'Pera 100g', 'Aveia em flocos 15g'], jantar: ['Inhame 220g', 'Frango grelhado 140g', 'Folhas à vontade + legumes à vontade'] },
+];
+
+let secaDayIdx = 0;
+
+function showSecaTab(id, el) {
+  document.querySelectorAll('#pg-seca .hist-tab').forEach(t => t.classList.remove('on'));
+  ['hoje','treino','dieta','cardio','regras'].forEach(t => {
+    const s = document.getElementById('seca-'+t); if(s) s.classList.remove('on');
+  });
+  if(el) el.classList.add('on');
+  const sec = document.getElementById('seca-'+id); if(sec) sec.classList.add('on');
+  if(id==='hoje') renderSecaHoje();
+  if(id==='treino') buildSecaTreino();
+  if(id==='dieta') renderSecaDiet();
+}
+
+// ── SECA SCHEDULE ──
+const SECA_SCHEDULE = {0:'A',1:'cardio',2:'B',3:'cardio',4:'A',5:'B',6:'rest'};
+const SECA_DAY_NAMES = {pt:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],en:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']};
+let secaActiveDayIdx = null; // null = today
+let restTimerInterval = null;
+
+function buildSecaDayTabs() {
+  const wrap = document.getElementById('seca-day-tabs');
+  if(!wrap) return;
+  const names = SECA_DAY_NAMES[lang] || SECA_DAY_NAMES.pt;
+  const todayPlanIdx = JS_TO_PLAN[new Date().getDay()];
+  if(secaActiveDayIdx === null) secaActiveDayIdx = todayPlanIdx;
+
+  wrap.innerHTML = [0,1,2,3,4,5,6].map(idx => {
+    const type = SECA_SCHEDULE[idx];
+    const isToday = idx === todayPlanIdx;
+    const isDone = (D.secaLog||{})[getCurrentWeekKey()+'_'+idx];
+    let cls = 'seca-day-tab';
+    if(idx === secaActiveDayIdx) cls += ' on';
+    else if(isDone) cls += ' done-day';
+    else if(type === 'cardio') cls += ' cardio';
+    else if(type === 'rest') cls += ' rest';
+    return `<div class="${cls}" onclick="selectSecaDay(${idx})">${names[idx]}${isToday?' ·':''}</div>`;
+  }).join('');
+}
+
+function getCurrentWeekKey() {
+  const d = new Date();
+  const week = Math.floor((d - new Date(d.getFullYear(),0,1)) / 604800000);
+  return d.getFullYear()+'w'+week;
+}
+
+function selectSecaDay(idx) {
+  secaActiveDayIdx = idx;
+  buildSecaDayTabs();
+  renderSecaHoje();
+}
+
+function renderSecaHoje() {
+  buildSecaDayTabs();
+  const container = document.getElementById('seca-hoje-content');
+  if(!container) return;
+
+  const planIdx = secaActiveDayIdx !== null ? secaActiveDayIdx : JS_TO_PLAN[new Date().getDay()];
+  const dayNames = {pt:['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],en:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']};
+  const todayName = (dayNames[lang]||dayNames.pt)[planIdx];
+  const type = SECA_SCHEDULE[planIdx];
+  const weekKey = getCurrentWeekKey();
+  const isDone = (D.secaLog||{})[weekKey+'_'+planIdx];
+
+  let html = '';
+
+  // Header card
+  const typeColors = {A:'var(--gold)',B:'var(--blue)',cardio:'var(--blue)',rest:'var(--green)'};
+  const typeLabels = {A:'TREINO A',B:'TREINO B',cardio:'CARDIO',rest:'DESCANSO'};
+  html += `<div style="margin:12px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:4px">${todayName.toUpperCase()}</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:${typeColors[type]||'var(--gold)'};letter-spacing:.5px">${typeLabels[type]||type}</div>
+      ${type!=='rest'?`<div style="font-size:13px;color:var(--mid);margin-top:3px">3 séries × 15–20 reps · Descanso 40s</div>`:''}
+    </div>
+    ${isDone?`<div class="badge badge-green">✓ FEITO</div>`:''}
+  </div>`;
+
+  if(type === 'rest') {
+    html += `<div style="margin:12px 14px 0;background:var(--green-bg);border:1px solid rgba(82,168,120,.25);border-radius:var(--r);padding:18px;text-align:center">
+      <div style="font-size:15px;color:var(--green);line-height:1.7">Recuperação ativa.<br>Caminhada leve, alongamento ou descanso total.<br>O crescimento acontece aqui.</div>
+    </div>`;
+  } else if(type === 'cardio') {
+    const cardioExs = [
+      {name:'Aquecimento',detail:'5–8 min esteira leve · Inclinação 4%'},
+      {name:'Intervalos × 10',detail:'30 seg forte (Incl 12–15% · Vel 3.5) + 60 seg leve (Incl 6% · Vel 2.5)'},
+      {name:'Pós-treino',detail:'3 min caminhada leve · Alongamento 30 seg cada'},
+    ];
+    html += `<div style="margin:12px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">`;
+    cardioExs.forEach((e,i) => {
+      html += `<div style="padding:14px 16px;border-bottom:1px solid var(--bdr)">
+        <div style="font-size:16px;color:var(--text);font-weight:600">${e.name}</div>
+        <div style="font-size:13px;color:var(--mid);margin-top:3px">${e.detail}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  } else {
+    // Lift day A or B
+    const exercises = type === 'A' ? SECA_TREINO_A : SECA_TREINO_B;
+    html += `<div style="margin:12px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">`;
+
+    exercises.forEach((ex, i) => {
+      const ck = `sb_${planIdx}_${i}`;
+      const done = (D.exChecked||{})[ck];
+      const loadKey = `load_seca_${type}_${i}`;
+      const loadHistory = (D.loadHistory||{})[loadKey] || [];
+      const lastLoad = loadHistory.length ? loadHistory[loadHistory.length-1] : null;
+
+      html += `<div id="sbr-${ck}" style="border-bottom:1px solid var(--bdr);background:${done?'rgba(82,168,120,.06)':''}">
+        <!-- Exercise main row -->
+        <div style="display:flex;align-items:center;gap:10px;padding:13px 14px">
+          <div class="ex-checkbox${done?' done':''}" onclick="secaCheckEx('${ck}',this)" style="flex-shrink:0;width:26px;height:26px">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:16px;color:var(--text);font-weight:600;line-height:1.2">${ex.name}${ex.warn?' <span style="color:var(--red);font-size:12px">⚠️</span>':''}</div>
+            <div style="font-size:13px;color:var(--mid);margin-top:2px">${ex.sets}×${ex.reps} · ${ex.rest}${lastLoad?` · <span style="color:var(--gold);font-weight:600">Últ: ${lastLoad.load}</span>`:''}</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-shrink:0">
+            <button onclick="startRestTimer('${ck}',40)" style="padding:7px 10px;background:var(--gold-bg);border:1px solid rgba(201,169,110,.3);border-radius:6px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.8px;cursor:pointer">40s</button>
+            <a class="ex-yt-btn" href="https://www.youtube.com/results?search_query=${ex.yt}" target="_blank" style="font-size:10px;padding:7px 8px">YT</a>
+            <div class="ex-yt-btn" onclick="openAlternatives('${ex.name}')" style="background:var(--gold-bg);border-color:rgba(201,169,110,.25);color:var(--gold);cursor:pointer;font-size:10px;padding:7px 8px">ALT</div>
+            <div onclick="toggleLoadPanel('load-${ck}')" style="padding:7px 10px;background:var(--s2);border:1px solid var(--bdr);border-radius:6px;color:var(--mid);font-size:16px;cursor:pointer;line-height:1">⚖</div>
+          </div>
+        </div>
+        <!-- Rest timer -->
+        <div class="rest-timer-wrap" id="timer-${ck}">
+          <div class="rest-timer-num" id="timer-num-${ck}">40</div>
+          <div class="rest-timer-bar"><div class="rest-timer-fill" id="timer-bar-${ck}" style="width:100%"></div></div>
+          <button class="btn-start-rest" onclick="startRestTimer('${ck}',40)">RESET</button>
+          <button class="btn-start-rest" onclick="stopRestTimer('${ck}')" style="background:var(--s2);color:var(--mid);border:1px solid var(--bdr)">✕</button>
+        </div>
+        <!-- Load panel -->
+        <div class="load-input-wrap" id="load-${ck}">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:8px">CARGA USADA HOJE</div>
+          <div class="load-row">
+            <input class="load-inp" id="load-inp-${ck}" type="text" placeholder="ex: 25lb" value="${lastLoad?lastLoad.load:''}">
+            <button class="load-save-btn" onclick="saveLoad('${loadKey}','${ck}')">SALVAR</button>
+          </div>
+          ${loadHistory.length?`<div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:6px">HISTÓRICO</div>
+          <div class="load-history">
+            ${[...loadHistory].reverse().slice(0,6).map(h=>`<div class="load-hist-item">${h.date}: <span>${h.load}</span></div>`).join('')}
+          </div>`:''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Executed button
+  if(type !== 'rest') {
+    const btnLabel = isDone ? '✓ SESSÃO CONCLUÍDA' : 'MARCAR SESSÃO COMO EXECUTADA';
+    const btnCls = isDone ? 'btn-executed done' : 'btn-executed';
+    html += `<div style="padding:0 14px">
+      <button class="${btnCls}" onclick="markSecaDone(${planIdx})">${btnLabel}</button>
+    </div>`;
+  }
+
+  // AI Cariani
+  html += `<div style="margin:14px 14px 0">
+    <div class="ai-chat-wrap" style="margin:0">
+      <div class="ai-chat-hd">
+        <div class="ai-chat-label">CARIANI IA</div>
+        <div class="ai-chat-mode" style="background:var(--gold-bg);color:var(--gold)">Personal</div>
+      </div>
+      <div class="quick-chips" id="seca-qchips">
+        <div class="qchip" onclick="secaAiQuick(this)">Como executar este treino?</div>
+        <div class="qchip" onclick="secaAiQuick(this)">Quando aumentar a carga?</div>
+        <div class="qchip" onclick="secaAiQuick(this)">Estou com dor muscular</div>
+        <div class="qchip" onclick="secaAiQuick(this)">Posso trocar um exercício?</div>
+        <div class="qchip" onclick="secaAiQuick(this)">Modo 2: treino de hoje</div>
+      </div>
+      <div class="ai-chat-feed" id="seca-chat-feed" style="max-height:280px"></div>
+      <div class="ai-chat-input-row">
+        <input class="ai-input" id="seca-ai-input" type="text" placeholder="Pergunte ao Cariani…" onkeydown="if(event.key==='Enter')sendSecaMsg()">
+        <button class="ai-send-btn" onclick="sendSecaMsg()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </div>
+    </div>
+  </div>`;
+
+  container.innerHTML = html;
+
+  // Init chat history
+  renderSecaChatHistory();
+}
+
+function renderSecaChatHistory() {
+  const feed = document.getElementById('seca-chat-feed');
+  if(!feed) return;
+  const chats = (D.coachChats||{}).cariani||[];
+  feed.innerHTML = '';
+  if(chats.length) {
+    chats.slice(-8).forEach(m => appendAiMsg('seca-chat-feed', m.role, m.content));
+  } else {
+    appendAiMsg('seca-chat-feed','bot','Direto ao ponto: você está aqui para transformar o corpo. Siga o plano, não pule sessão, registre as cargas. Me chame quando tiver dúvida técnica ou precisar de ajuste.');
+  }
+}
+
+function secaCheckEx(ck, el) {
+  if(!D.exChecked) D.exChecked={};
+  D.exChecked[ck] = !D.exChecked[ck];
+  el.classList.toggle('done', D.exChecked[ck]);
+  const row = document.getElementById('sbr-'+ck);
+  if(row) row.style.background = D.exChecked[ck] ? 'rgba(82,168,120,.06)' : '';
+  save();
+}
+
+function toggleLoadPanel(id) {
+  const panel = document.getElementById(id);
+  if(!panel) return;
+  const isOpen = panel.classList.contains('show');
+  panel.classList.toggle('show', !isOpen);
+}
+
+function saveLoad(loadKey, ck) {
+  const inp = document.getElementById('load-inp-'+ck);
+  if(!inp || !inp.value.trim()) return;
+  if(!D.loadHistory) D.loadHistory={};
+  if(!D.loadHistory[loadKey]) D.loadHistory[loadKey]=[];
+  const today = new Date().toLocaleDateString('pt-BR',{month:'short',day:'numeric'});
+  // Remove existing entry for today
+  D.loadHistory[loadKey] = D.loadHistory[loadKey].filter(h=>h.date!==today);
+  D.loadHistory[loadKey].push({date:today, load:inp.value.trim(), ts:Date.now()});
+  D.loadHistory[loadKey] = D.loadHistory[loadKey].slice(-20);
+  save();
+  toast(lang==='pt'?'Carga salva!':'Load saved!');
+  renderSecaHoje();
+}
+
+// Rest timer
+function startRestTimer(ck, seconds) {
+  stopRestTimer(ck);
+  const wrap = document.getElementById('timer-'+ck);
+  const numEl = document.getElementById('timer-num-'+ck);
+  const barEl = document.getElementById('timer-bar-'+ck);
+  if(!wrap||!numEl||!barEl) return;
+  wrap.classList.add('show');
+  let remaining = seconds;
+  numEl.textContent = remaining;
+  barEl.style.width = '100%';
+  barEl.style.transition = 'none';
+
+  restTimerInterval = setInterval(() => {
+    remaining--;
+    numEl.textContent = remaining;
+    barEl.style.transition = 'width 1s linear';
+    barEl.style.width = Math.round((remaining/seconds)*100)+'%';
+    if(remaining <= 0) {
+      clearInterval(restTimerInterval);
+      numEl.textContent = '✓';
+      barEl.style.width = '0%';
+      // Vibrate if supported
+      if(navigator.vibrate) navigator.vibrate([200,100,200]);
+      toast(lang==='pt'?'Descansou! Próxima série.':'Rest done! Next set.');
+    }
+  }, 1000);
+}
+
+function stopRestTimer(ck) {
+  if(restTimerInterval) { clearInterval(restTimerInterval); restTimerInterval=null; }
+  const wrap = document.getElementById('timer-'+ck);
+  if(wrap) wrap.classList.remove('show');
+}
+
+function markSecaDone(planIdx) {
+  if(!D.secaLog) D.secaLog={};
+  const key = getCurrentWeekKey()+'_'+planIdx;
+  D.secaLog[key] = !D.secaLog[key];
+  save();
+  buildSecaDayTabs();
+  renderSecaHoje();
+  if(D.secaLog[key]) toast(lang==='pt'?'Sessão registrada! 💪':'Session logged!');
+}
+
+// Seca AI
+const SECA_AI_SYSTEM = () => `Você é Renato Cariani como treinador pessoal do Ewerton Decastro. 
+Tom: direto, técnico, sem elogios vazios, sem motivação genérica. Fale como o Cariani fala: assertivo, prático, baseado em evidências.
+PERFIL: Peso 228.5 lbs (103.6kg) | Gordura 28.8% | Massa magra 162.5 lbs | Gordura visceral 13 (alto) | Altura 6ft (183cm) | Idade 44 anos.
+Objetivo: Recomposição corporal. Hipertrofia + perda de gordura. Foco: braço, trapézio, reduzir abdômen.
+Treino: Seca Barriga Cariani — FullBody Treino A e B + Cardio. 3×15-20 reps. Intervalo 30-40s. 5AM.
+Limitações: Artrite nos joelhos. Euflexxa ativo. Sem impacto. Agachamento e stiff com amplitude reduzida.
+Iniciante real: histórico de abandono. Prioridade = aderência.
+Responda em ${lang==='pt'?'português brasileiro':'English'}. Máximo 3 parágrafos. **Bold** nos pontos principais.`;
+
+async function sendSecaMsg() {
+  const inp = document.getElementById('seca-ai-input');
+  const msg = inp.value.trim(); if(!msg) return;
+  if(!D.apiKey){toast(tr('t_api_needed'));openSheet('api-ov');return;}
+  inp.value='';
+  appendAiMsg('seca-chat-feed','user',msg);
+  showTypingInFeed('seca-chat-feed','seca-typing');
+  if(!D.coachChats) D.coachChats={trainer:[],nutritionist:[],cariani:[]};
+  if(!D.coachChats.cariani) D.coachChats.cariani=[];
+  D.coachChats.cariani.push({role:'user',content:msg});
+  const msgs=[...D.coachChats.cariani.slice(-10).map(m=>({role:m.role==='bot'?'assistant':'user',content:m.content})),{role:'user',content:msg}];
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':D.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:500,system:SECA_AI_SYSTEM(),messages:msgs})});
+    const data=await res.json();
+    const d=document.getElementById('seca-typing');if(d)d.remove();
+    const reply=data.content?.[0]?.text||'Erro.';
+    appendAiMsg('seca-chat-feed','bot',reply);
+    D.coachChats.cariani.push({role:'bot',content:reply});
+    if(D.coachChats.cariani.length>40)D.coachChats.cariani=D.coachChats.cariani.slice(-40);
+    save();
+  }catch(e){
+    const d=document.getElementById('seca-typing');if(d)d.remove();
+    appendAiMsg('seca-chat-feed','bot',lang==='pt'?'Erro de conexão.':'Connection error.');
+  }
+}
+
+function secaAiQuick(el) {
+  document.getElementById('seca-ai-input').value = el.textContent;
+  sendSecaMsg();
+}
+
+function sbTodayToggle(key, rowId, el) {
+  secaCheckEx(key, el);
+}
+
+function buildSecaTreino() {
+  const CHECK_SVG = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+  const buildList = (exercises, prefix) => {
+    return exercises.map((ex, i) => {
+      const key = prefix+'_'+i;
+      const done = (D.exChecked||{})[key];
+      return `<div class="ex-row${done?' done-ex':''}" id="sb-${key}">
+        <div class="ex-top">
+          <div class="ex-checkbox${done?' done':''}" onclick="sbToggle('${key}','sb-${key}',this)">
+            ${CHECK_SVG}
+          </div>
+          <div class="ex-info">
+            <div class="ex-name">${ex.name}${ex.warn?` <span style="color:var(--red);font-size:12px">⚠️ JOELHO</span>`:''}  </div>
+            <div class="ex-detail">${ex.sets}×${ex.reps} · ${ex.rest}</div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <a class="ex-yt-btn" href="https://www.youtube.com/results?search_query=${ex.yt}" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2 .3 4.2.3 4.2s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.2 21.5 12 21.5 12 21.5s4.2 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.3l6.6 3.6-6.6 3.6z"/></svg>
+              YT
+            </a>
+            <div class="ex-yt-btn" onclick="openAlternatives('${ex.name}')" style="background:var(--gold-bg);border-color:rgba(201,169,110,.25);color:var(--gold);cursor:pointer">ALT</div>
+            <div class="ex-expand-btn" onclick="toggleExPanel('sbdet-${key}',this)">+</div>
+          </div>
+        </div>
+        <div class="ex-detail-panel" id="sbdet-${key}">
+          <div class="ex-notes"><strong>EXECUÇÃO</strong>${ex.note}</div>
+        </div>
+      </div>`;
+    }).join('');
+  };
+
+  const listA = document.getElementById('seca-treino-a-list');
+  if(listA) listA.innerHTML = buildList(SECA_TREINO_A, 'seca_a');
+  const listB = document.getElementById('seca-treino-b-list');
+  if(listB) listB.innerHTML = buildList(SECA_TREINO_B, 'seca_b');
+}
+
+function sbToggle(key, rowId, el) {
+  if(!D.exChecked) D.exChecked={};
+  D.exChecked[key] = !D.exChecked[key];
+  el.classList.toggle('done', D.exChecked[key]);
+  const row = document.getElementById(rowId);
+  if(row) row.classList.toggle('done-ex', D.exChecked[key]);
+  save();
+}
+
+function renderSecaDiet() {
+  const day = SECA_DIETAS[secaDayIdx];
+  setEl('seca-day-label', day.dia);
+  const MEAL_COLORS = ['var(--gold)','var(--green)','var(--blue)'];
+  const MEAL_NAMES = ['ALMOÇO','LANCHE DA TARDE','JANTAR'];
+  const meals = [day.almoco, day.lanche, day.jantar];
+  const container = document.getElementById('seca-diet-content');
+  if(!container) return;
+  container.innerHTML = meals.map((foods, mi) => `
+    <div style="margin:12px 14px 0;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px">
+        <div style="width:4px;height:28px;border-radius:4px;background:${MEAL_COLORS[mi]};flex-shrink:0"></div>
+        <div style="font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${MEAL_COLORS[mi]}">${MEAL_NAMES[mi]}</div>
+        <div style="margin-left:auto;font-size:13px;color:var(--dim)">${mi===0?'516 kcal':mi===1?'273 kcal':'516 kcal'}</div>
+      </div>
+      ${foods.map(f => `
+        <div style="padding:11px 16px;border-bottom:1px solid var(--bdr);font-size:15px;color:var(--text)">${f}</div>
+      `).join('')}
+      <div style="padding:10px 16px;font-size:13px;color:var(--dim)">
+        ${mi===0||mi===2?'Temperar com sal, limão ou qualquer molho zero.':''}
+      </div>
+    </div>`).join('') +
+    `<div style="margin:12px 14px 0;background:var(--gold-bg);border:1px solid rgba(201,169,110,.2);border-radius:var(--rs);padding:12px 16px;font-size:15px;color:var(--gold);font-weight:600;text-align:center">
+      Total: 1.305 kcal/dia · Para ${(103.6*40).toFixed(0)} ml de água (103.6 kg × 40ml)
+    </div>`;
+}
+
+function changeSecaDay(dir) {
+  secaDayIdx = Math.max(0, Math.min(SECA_DIETAS.length-1, secaDayIdx+dir));
+  renderSecaDiet();
 }
 
 // ══════════════════════════════════
