@@ -472,7 +472,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   </div>
 
   <div class="stat-row">
-    <div class="stat-cell"><div class="stat-val gold" id="h-weight">103.6</div><div class="stat-lbl">lbs</div></div>
+    <div class="stat-cell"><div class="stat-val gold" id="h-weight">228.5</div><div class="stat-lbl">lbs</div></div>
     <div class="stat-cell"><div class="stat-val" id="h-streak">0</div><div class="stat-lbl" id="h-streak-lbl">Streak</div></div>
     <div class="stat-cell"><div class="stat-val" id="h-fasts">0</div><div class="stat-lbl">Jejuns</div></div>
   </div>
@@ -921,8 +921,22 @@ let D = {
 const TODAY = new Date().toDateString();
 
 function load() {
-  const r = localStorage.getItem('apex_v1');
+  const r = localStorage.getItem('apex_v2');
   if (r) Object.assign(D, JSON.parse(r));
+  // Migrate from v1 if exists
+  const old = localStorage.getItem('apex_v1');
+  if (old && !r) {
+    try {
+      const parsed = JSON.parse(old);
+      // Carry over history but reset weight to correct default
+      if (parsed.fastHistory) D.fastHistory = parsed.fastHistory;
+      if (parsed.workoutHistory) D.workoutHistory = parsed.workoutHistory;
+      if (parsed.weightLog) D.weightLog = parsed.weightLog;
+      if (parsed.coachChats) D.coachChats = parsed.coachChats;
+      if (parsed.apiKey) D.apiKey = parsed.apiKey;
+      if (parsed.streak) D.streak = parsed.streak;
+    } catch(e) {}
+  }
   D.apiKey = localStorage.getItem('apex_api') || '';
   if (!D.coachChats) D.coachChats = {trainer:[], nutritionist:[]};
   if (!D.exFeedback) D.exFeedback = {};
@@ -934,17 +948,17 @@ function load() {
   if (!D.fastHistory) D.fastHistory = [];
   if (!D.workoutHistory) D.workoutHistory = [];
   if (!D.nutritionHistory) D.nutritionHistory = [];
-  if (localStorage.getItem('apex_date') !== TODAY) {
+  if (localStorage.getItem('apex_date2') !== TODAY) {
     D.log = []; D.water = 0;
-    const prev = localStorage.getItem('apex_prev');
+    const prev = localStorage.getItem('apex_prev2');
     const yest = new Date(); yest.setDate(yest.getDate()-1);
     D.streak = (prev === yest.toDateString()) ? (D.streak||0)+1 : 1;
-    localStorage.setItem('apex_date', TODAY);
-    localStorage.setItem('apex_prev', TODAY);
+    localStorage.setItem('apex_date2', TODAY);
+    localStorage.setItem('apex_prev2', TODAY);
   }
 }
 function save() {
-  localStorage.setItem('apex_v1', JSON.stringify(D));
+  localStorage.setItem('apex_v2', JSON.stringify(D));
   localStorage.setItem('apex_api', D.apiKey);
 }
 
@@ -2083,7 +2097,7 @@ function logWeight(){
   D.weightLbs=lbs; save();
   document.getElementById('w-input').value='';
   renderWeightPage();
-  setEl('h-weight',dispW(lbs)+' '+(D.weightUnit==='kg'?'kg':'lbs'));
+  setEl('h-weight',dispW(D.weightLbs||228.5)+' '+(D.weightUnit==='kg'?'kg':'lbs'));
   toast(tr('t_weight_ok'));
 }
 
